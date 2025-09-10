@@ -1,11 +1,19 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
-import { X, Send, Mail, User, Phone, MessageCircle, CheckCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import emailjs from '@emailjs/browser';
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import {
+  X,
+  Send,
+  Mail,
+  User,
+  Phone,
+  MessageCircle,
+  CheckCircle,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import emailjs from "@emailjs/browser";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -14,10 +22,10 @@ interface ContactModalProps {
 
 const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
   });
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -25,55 +33,65 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     try {
-      // Initialize EmailJS (replace with your actual keys)
-      emailjs.init("WfMp6i95hfX4jNSrO"); // Your public key
-      
-      // Send email using EmailJS
       await emailjs.send(
-        "service_rajat_portfolio", // Your service ID
-        "template_contact_form", // Your template ID
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
           from_name: formData.name,
           from_email: formData.email,
-          phone: formData.phone || 'Not provided',
+          phone: formData.phone || "Not provided",
           message: formData.message,
-          to_email: "sy1sascc@gmail.com"
-        }
+          to_email: "sy1sascc@gmail.com",
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
-      
+
       setIsSuccess(true);
       setTimeout(() => {
-        setFormData({ name: '', email: '', phone: '', message: '' });
+        setFormData({ name: "", email: "", phone: "", message: "" });
         setIsSuccess(false);
         onClose();
       }, 2000);
-      
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error("EmailJS Error:", error);
       // Fallback to mailto
-      const subject = encodeURIComponent(`Portfolio Contact: Message from ${formData.name}`);
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'Not provided'}\n\nMessage:\n${formData.message}`
+      const subject = encodeURIComponent(
+        `Portfolio Contact: Message from ${formData.name}`
       );
-      window.open(`mailto:sy1sascc@gmail.com?subject=${subject}&body=${body}`, '_blank');
-      
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${
+          formData.phone || "Not provided"
+        }\n\nMessage:\n${formData.message}`
+      );
+      window.open(
+        `mailto:sy1sascc@gmail.com?subject=${subject}&body=${body}`,
+        "_blank"
+      );
+
       setIsSuccess(true);
       setTimeout(() => {
-        setFormData({ name: '', email: '', phone: '', message: '' });
+        setFormData({ name: "", email: "", phone: "", message: "" });
         setIsSuccess(false);
         onClose();
       }, 2000);
     }
-    
+
     setIsLoading(false);
+    console.log({
+      publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+      serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+    });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -110,13 +128,21 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                   <motion.div
                     className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center"
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   >
                     <Mail className="w-5 h-5 text-primary-foreground" />
                   </motion.div>
                   <div>
-                    <h2 className="text-xl font-bold text-foreground">Get in Touch</h2>
-                    <p className="text-sm text-muted-foreground">Send me a message</p>
+                    <h2 className="text-xl font-bold text-foreground">
+                      Get in Touch
+                    </h2>
+                    <p className="text-sm text-muted-foreground">
+                      Send me a message
+                    </p>
                   </div>
                 </div>
                 <Button
@@ -132,7 +158,10 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="text-sm font-medium text-foreground flex items-center">
+                  <Label
+                    htmlFor="name"
+                    className="text-sm font-medium text-foreground flex items-center"
+                  >
                     <User className="w-4 h-4 mr-2 text-primary" />
                     Name *
                   </Label>
@@ -148,7 +177,10 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-sm font-medium text-foreground flex items-center">
+                  <Label
+                    htmlFor="email"
+                    className="text-sm font-medium text-foreground flex items-center"
+                  >
                     <Mail className="w-4 h-4 mr-2 text-primary" />
                     Email *
                   </Label>
@@ -165,7 +197,10 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-sm font-medium text-foreground flex items-center">
+                  <Label
+                    htmlFor="phone"
+                    className="text-sm font-medium text-foreground flex items-center"
+                  >
                     <Phone className="w-4 h-4 mr-2 text-primary" />
                     Phone (Optional)
                   </Label>
@@ -181,7 +216,10 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="message" className="text-sm font-medium text-foreground flex items-center">
+                  <Label
+                    htmlFor="message"
+                    className="text-sm font-medium text-foreground flex items-center"
+                  >
                     <MessageCircle className="w-4 h-4 mr-2 text-primary" />
                     Message *
                   </Label>
@@ -200,26 +238,41 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                 <Button
                   type="submit"
                   className="w-full btn-neon group"
-                  disabled={!formData.name || !formData.email || !formData.message || isLoading}
+                  disabled={
+                    !formData.name ||
+                    !formData.email ||
+                    !formData.message ||
+                    isLoading
+                  }
                 >
                   {isLoading ? (
                     <motion.div
                       className="w-4 h-4 mr-2 border-2 border-primary-foreground border-t-transparent rounded-full"
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
                     />
                   ) : isSuccess ? (
                     <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
                   ) : (
                     <Send className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
                   )}
-                  {isLoading ? 'Sending...' : isSuccess ? 'Sent!' : 'Send Message'}
+                  {isLoading
+                    ? "Sending..."
+                    : isSuccess
+                    ? "Sent!"
+                    : "Send Message"}
                 </Button>
               </form>
 
               <div className="mt-6 pt-4 border-t border-primary/20 text-center">
                 <p className="text-xs text-muted-foreground">
-                  {isSuccess ? '✨ Message sent successfully!' : 'Your message will be sent directly to my inbox'}
+                  {isSuccess
+                    ? "✨ Message sent successfully!"
+                    : "Your message will be sent directly to my inbox"}
                 </p>
               </div>
             </div>
