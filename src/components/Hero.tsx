@@ -146,7 +146,16 @@ const Hero = () => {
             </Button>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="animate-bounce">
+          <motion.div
+            variants={itemVariants}
+            className="animate-bounce cursor-pointer"
+            onClick={() => {
+              const techStackSection = document.getElementById("tech-stack");
+              if (techStackSection) {
+                techStackSection.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+          >
             <ChevronDown className="w-8 h-8 mx-auto text-primary opacity-70" />
           </motion.div>
         </motion.div>
