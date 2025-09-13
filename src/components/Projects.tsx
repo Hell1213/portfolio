@@ -17,6 +17,7 @@ const Projects = () => {
       longDescription:
         "Clarity will evolve into a complete Focus OS for productivity and mental health. Beyond journaling and timers, it will integrate smart app/website blocking, VS Code extension for coding session tracking, deep analytics, cross-device syncing, calendar/music integration, and AI-driven wellness suggestions.",
       link: "https://clarity-app-one.vercel.app/",
+      sourceCodeLink: "https://github.com/Hell1213/clarity-app",
       icon: Zap,
       gradient: "bg-gradient-primary",
       tags: ["AI", "Wellness", "React", "Next.js", "TailwindCSS"],
@@ -35,6 +36,7 @@ const Projects = () => {
       longDescription:
         "NovaDraw replicates the experience of an in-person whiteboard session, but online. With live collaboration, drawing tools, infinite canvas, and real-time syncing for seamless remote team collaboration.",
       link: "https://nova-draw.vercel.app/",
+      sourceCodeLink: "https://github.com/Hell1213/NovaDraw",
       icon: Brush,
       gradient: "bg-gradient-secondary",
       tags: ["MERN", "Yjs", "Real-time", "Collaboration", "Canvas"],
@@ -217,6 +219,7 @@ const Projects = () => {
                 </motion.div>
 
                 {/* Action Buttons */}
+                {/* Action Buttons */}
                 <motion.div
                   className="flex gap-4"
                   initial={{ opacity: 0, y: 20 }}
@@ -233,9 +236,15 @@ const Projects = () => {
                       View Live
                     </a>
                   </Button>
-                  <Button className="btn-ghost-neon group">
-                    <Github className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-                    Source Code
+                  <Button className="btn-ghost-neon group" asChild>
+                    <a
+                      href={project.sourceCodeLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Github className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                      Source Code
+                    </a>
                   </Button>
                 </motion.div>
               </div>
