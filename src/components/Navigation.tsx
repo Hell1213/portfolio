@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import { Github, Twitter, Mail, Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import ContactModal from './ContactModal';
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { Github, Twitter, Mail, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import ContactModal from "./ContactModal";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,17 +11,17 @@ const Navigation = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
     setIsOpen(false);
   };
 
   const navItems = [
-    { label: 'Home', id: 'hero' },
-    { label: 'Tech Stack', id: 'tech-stack' },
-    { label: 'Projects', id: 'projects' },
-    { label: 'Journey', id: 'journey' },
-    { label: 'Contact', id: 'contact' }
+    { label: "Home", id: "hero" },
+    { label: "Tech Stack", id: "tech-stack" },
+    { label: "Projects", id: "projects" },
+    // { label: 'Journey', id: 'journey' },
+    { label: "Contact", id: "contact" },
   ];
 
   return (
@@ -38,7 +38,7 @@ const Navigation = () => {
             <motion.div
               className="text-2xl font-bold text-gradient cursor-pointer"
               whileHover={{ scale: 1.05 }}
-              onClick={() => scrollToSection('hero')}
+              onClick={() => scrollToSection("hero")}
             >
               RY
             </motion.div>
@@ -94,7 +94,11 @@ const Navigation = () => {
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </motion.button>
           </div>
 
@@ -103,7 +107,7 @@ const Navigation = () => {
             <motion.div
               className="md:hidden mt-4 pb-4 border-t border-primary/20"
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
             >
               <div className="flex flex-col space-y-4 pt-4">
@@ -151,9 +155,9 @@ const Navigation = () => {
         </div>
       </motion.nav>
 
-      <ContactModal 
-        isOpen={isContactOpen} 
-        onClose={() => setIsContactOpen(false)} 
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
       />
     </>
   );

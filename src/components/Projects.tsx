@@ -1,8 +1,9 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { ExternalLink, Github, Zap, Brush } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import { ExternalLink, Github, Zap, Brush } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { PinContainer } from "@/components/ui/3d-pin";
 
 const Projects = () => {
   const ref = useRef(null);
@@ -12,25 +13,39 @@ const Projects = () => {
     {
       title: "Clarity App",
       subtitle: "AI-Powered Wellness Platform",
-      description: "An AI-powered wellness app designed to help users improve focus and mental health through intelligent journaling, productivity tracking, and personalized insights.",
-      longDescription: "Clarity will evolve into a complete Focus OS for productivity and mental health. Beyond journaling and timers, it will integrate smart app/website blocking, VS Code extension for coding session tracking, deep analytics, cross-device syncing, calendar/music integration, and AI-driven wellness suggestions.",
-      link: "https://clarity-app-one.vercel.app/",
+      description:
+        "An AI-powered wellness app designed to help users improve focus and mental health through intelligent journaling, productivity tracking, and personalized insights.",
+      longDescription:
+        "Clarity will evolve into a complete Focus OS for productivity and mental health. Beyond journaling and timers, it will integrate smart app/website blocking, VS Code extension for coding session tracking, deep analytics, cross-device syncing, calendar/music integration, and AI-driven wellness suggestions.",
+      link: "https://clarity-app-one.vercel.app/ ",
       icon: Zap,
       gradient: "bg-gradient-primary",
       tags: ["AI", "Wellness", "React", "Next.js", "TailwindCSS"],
-      features: ["Intelligent Journaling", "Productivity Tracking", "AI Insights", "Focus Timers"]
+      features: [
+        "Intelligent Journaling",
+        "Productivity Tracking",
+        "AI Insights",
+        "Focus Timers",
+      ],
     },
     {
       title: "NovaDraw",
       subtitle: "Real-time Collaborative Whiteboard",
-      description: "A real-time collaborative whiteboard built with MERN + Yjs. Provides teams with an infinite canvas for brainstorming, diagramming, and visual collaboration.",
-      longDescription: "NovaDraw replicates the experience of an in-person whiteboard session, but online. With live collaboration, drawing tools, infinite canvas, and real-time syncing for seamless remote team collaboration.",
+      description:
+        "A real-time collaborative whiteboard built with MERN + Yjs. Provides teams with an infinite canvas for brainstorming, diagramming, and visual collaboration.",
+      longDescription:
+        "NovaDraw replicates the experience of an in-person whiteboard session, but online. With live collaboration, drawing tools, infinite canvas, and real-time syncing for seamless remote team collaboration.",
       link: "https://nova-draw.vercel.app/",
       icon: Brush,
       gradient: "bg-gradient-secondary",
       tags: ["MERN", "Yjs", "Real-time", "Collaboration", "Canvas"],
-      features: ["Live Collaboration", "Drawing Tools", "Infinite Canvas", "Real-time Syncing"]
-    }
+      features: [
+        "Live Collaboration",
+        "Drawing Tools",
+        "Infinite Canvas",
+        "Real-time Syncing",
+      ],
+    },
   ];
 
   const containerVariants = {
@@ -39,9 +54,9 @@ const Projects = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.3,
-        delayChildren: 0.2
-      }
-    }
+        delayChildren: 0.2,
+      },
+    },
   };
 
   const projectVariants = {
@@ -51,9 +66,9 @@ const Projects = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut" as const
-      }
-    }
+        ease: "easeOut" as const,
+      },
+    },
   };
 
   return (
@@ -69,7 +84,8 @@ const Projects = () => {
             <span className="text-gradient">Featured Projects</span>
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Innovative solutions that showcase the power of modern web technologies
+            Innovative solutions that showcase the power of modern web
+            technologies
           </p>
         </motion.div>
 
@@ -83,18 +99,18 @@ const Projects = () => {
             <motion.div
               key={project.title}
               variants={projectVariants}
-              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-8 lg:gap-12`}
+              className={`flex flex-col ${
+                index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+              } items-center gap-8 lg:gap-12`}
             >
               {/* Project Visual */}
-              <motion.div
-                className="w-full lg:flex-1 relative group"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="glow-card p-4 sm:p-6 md:p-8 aspect-square lg:h-80 relative overflow-hidden rounded-2xl">
+              <PinContainer title={project.title} href={project.link}>
+                <div className="glow-card p-6 sm:p-8 md:p-10 w-full max-w-md lg:max-w-2xl h-auto lg:h-80 relative overflow-hidden rounded-2xl">
                   {/* Animated Background */}
-                  <div className={`absolute inset-0 ${project.gradient} opacity-20 rounded-2xl`} />
-                  
+                  <div
+                    className={`absolute inset-0 ${project.gradient} opacity-20 rounded-2xl`}
+                  />
+
                   {/* Project Icon */}
                   <motion.div
                     className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-foreground/10 flex items-center justify-center group-hover:rotate-12 transition-transform duration-500"
@@ -103,7 +119,7 @@ const Projects = () => {
                     <project.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                   </motion.div>
 
-                  {/* Floating Elements - Hidden on mobile for cleaner look */}
+                  {/* Floating Elements */}
                   <div className="absolute inset-0 overflow-hidden hidden sm:block">
                     {project.features.map((feature, i) => (
                       <motion.div
@@ -115,12 +131,12 @@ const Projects = () => {
                         }}
                         animate={{
                           y: [0, -10, 0],
-                          opacity: [0.7, 1, 0.7]
+                          opacity: [0.7, 1, 0.7],
                         }}
                         transition={{
                           duration: 3,
                           repeat: Infinity,
-                          delay: i * 0.5
+                          delay: i * 0.5,
                         }}
                       >
                         {feature}
@@ -135,11 +151,11 @@ const Projects = () => {
                       animate={{ rotate: [0, 5, -5, 0] }}
                       transition={{ duration: 6, repeat: Infinity }}
                     >
-                      {project.title.split(' ')[0]}
+                      {project.title.split(" ")[0]}
                     </motion.div>
                   </div>
                 </div>
-              </motion.div>
+              </PinContainer>
 
               {/* Project Info */}
               <div className="flex-1 space-y-6">
@@ -205,7 +221,11 @@ const Projects = () => {
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >
                   <Button className="btn-neon group" asChild>
-                    <a href={project.link} target="_blank" rel="noopener noreferrer">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <ExternalLink className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
                       View Live
                     </a>

@@ -79,11 +79,6 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
     }
 
     setIsLoading(false);
-    console.log({
-      publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
-      serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      templateId: import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-    });
   };
 
   const handleChange = (
@@ -211,7 +206,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                     value={formData.phone}
                     onChange={handleChange}
                     className="bg-background/50 border-primary/20 focus:border-primary"
-                    placeholder="+1 (555) 000-0000"
+                    placeholder="+91....??"
                   />
                 </div>
 

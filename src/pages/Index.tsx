@@ -1,9 +1,9 @@
-import Navigation from '@/components/Navigation';
-import Hero from '@/components/Hero';
-import TechStack from '@/components/TechStack';
-import Projects from '@/components/Projects';
-import Journey from '@/components/Journey';
-import Contact from '@/components/Contact';
+import Navigation from "@/components/Navigation";
+import Hero from "@/components/Hero";
+import TechStack from "@/components/TechStack";
+import Projects from "@/components/Projects";
+// import Journey from "@/components/Journey";
+import Contact from "@/components/Contact";
 
 const Index = () => {
   return (
@@ -12,7 +12,7 @@ const Index = () => {
       <Hero />
       <TechStack />
       <Projects />
-      <Journey />
+      {/* <Journey /> */}
       <Contact />
     </div>
   );

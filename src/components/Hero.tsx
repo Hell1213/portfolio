@@ -1,8 +1,8 @@
-import { motion } from 'framer-motion';
-import { ChevronDown, Github, Twitter, Mail } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useState } from 'react';
-import ContactModal from './ContactModal';
+import { motion } from "framer-motion";
+import { ChevronDown, Github, Twitter, Mail } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import ContactModal from "./ContactModal";
 
 const Hero = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -12,9 +12,9 @@ const Hero = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
+        delayChildren: 0.3,
+      },
+    },
   };
 
   const itemVariants = {
@@ -24,9 +24,9 @@ const Hero = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut" as const
-      }
-    }
+        ease: "easeOut" as const,
+      },
+    },
   };
 
   const floatingVariants = {
@@ -35,17 +35,20 @@ const Hero = () => {
       transition: {
         duration: 4,
         repeat: Infinity,
-        ease: "easeInOut" as const
-      }
-    }
+        ease: "easeInOut" as const,
+      },
+    },
   };
 
   return (
     <>
-      <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section
+        id="hero"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+      >
         {/* Animated Background */}
         <div className="absolute inset-0 cosmic-bg opacity-30" />
-        
+
         {/* Floating Orbs */}
         <motion.div
           className="absolute top-20 left-20 w-32 h-32 rounded-full bg-primary/20 blur-xl"
@@ -73,7 +76,8 @@ const Hero = () => {
         >
           <motion.div variants={itemVariants} className="mb-6">
             <h1 className="text-6xl md:text-8xl font-bold mb-4">
-              <span className="text-gradient">Rajat</span>{' '}
+              <div className="text-gradient">Hii I'm</div>
+              <span className="text-gradient">Rajat</span>{" "}
               <span className="text-foreground">Yadav</span>
             </h1>
           </motion.div>
@@ -100,28 +104,40 @@ const Hero = () => {
             </div>
           </motion.div>
 
-        <motion.p
-          variants={itemVariants}
-          className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
-        >
-          Passionate about building interactive, scalable applications. Specializing in 
-          frontend, backend, and exploring the frontiers of AI and ML.
-        </motion.p>
+          <motion.p
+            variants={itemVariants}
+            className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
+          >
+            Passionate about building interactive, scalable applications.
+            Specializing in frontend, backend, and exploring the frontiers of AI
+            and ML.
+          </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4 mb-16">
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap justify-center gap-4 mb-16"
+          >
             <Button className="btn-neon group" asChild>
-              <a href="https://github.com/Hell1213" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/Hell1213"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Github className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
                 GitHub
               </a>
             </Button>
             <Button className="btn-ghost-neon group" asChild>
-              <a href="https://x.com/rajatyadavv" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://x.com/rajatyadavv"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Twitter className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
                 Twitter
               </a>
             </Button>
-            <Button 
+            <Button
               className="btn-neon group"
               onClick={() => setIsContactOpen(true)}
             >
@@ -130,18 +146,15 @@ const Hero = () => {
             </Button>
           </motion.div>
 
-          <motion.div
-            variants={itemVariants}
-            className="animate-bounce"
-          >
+          <motion.div variants={itemVariants} className="animate-bounce">
             <ChevronDown className="w-8 h-8 mx-auto text-primary opacity-70" />
           </motion.div>
         </motion.div>
       </section>
 
-      <ContactModal 
-        isOpen={isContactOpen} 
-        onClose={() => setIsContactOpen(false)} 
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
       />
     </>
   );
