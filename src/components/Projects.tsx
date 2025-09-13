@@ -3,7 +3,6 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ExternalLink, Github, Zap, Brush } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PinContainer } from "@/components/ui/3d-pin";
 
 const Projects = () => {
   const ref = useRef(null);
@@ -17,7 +16,7 @@ const Projects = () => {
         "An AI-powered wellness app designed to help users improve focus and mental health through intelligent journaling, productivity tracking, and personalized insights.",
       longDescription:
         "Clarity will evolve into a complete Focus OS for productivity and mental health. Beyond journaling and timers, it will integrate smart app/website blocking, VS Code extension for coding session tracking, deep analytics, cross-device syncing, calendar/music integration, and AI-driven wellness suggestions.",
-      link: "https://clarity-app-one.vercel.app/ ",
+      link: "https://clarity-app-one.vercel.app/",
       icon: Zap,
       gradient: "bg-gradient-primary",
       tags: ["AI", "Wellness", "React", "Next.js", "TailwindCSS"],
@@ -104,8 +103,12 @@ const Projects = () => {
               } items-center gap-8 lg:gap-12`}
             >
               {/* Project Visual */}
-              <PinContainer title={project.title} href={project.link}>
-                <div className="glow-card p-6 sm:p-8 md:p-10 w-full max-w-md lg:max-w-2xl h-auto lg:h-80 relative overflow-hidden rounded-2xl">
+              <motion.div
+                className="w-full lg:flex-1 relative group"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="glow-card p-4 sm:p-6 md:p-8 aspect-square lg:h-80 relative overflow-hidden rounded-2xl">
                   {/* Animated Background */}
                   <div
                     className={`absolute inset-0 ${project.gradient} opacity-20 rounded-2xl`}
@@ -119,7 +122,7 @@ const Projects = () => {
                     <project.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary" />
                   </motion.div>
 
-                  {/* Floating Elements */}
+                  {/* Floating Elements - Hidden on mobile for cleaner look */}
                   <div className="absolute inset-0 overflow-hidden hidden sm:block">
                     {project.features.map((feature, i) => (
                       <motion.div
@@ -155,7 +158,7 @@ const Projects = () => {
                     </motion.div>
                   </div>
                 </div>
-              </PinContainer>
+              </motion.div>
 
               {/* Project Info */}
               <div className="flex-1 space-y-6">
