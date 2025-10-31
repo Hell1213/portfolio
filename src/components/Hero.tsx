@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChevronDown, Github, Twitter, Mail } from "lucide-react";
+import { ChevronDown, Github, Twitter, Mail, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import ContactModal from "./ContactModal";
@@ -125,6 +125,16 @@ const Hero = () => {
               >
                 <Github className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
                 GitHub
+              </a>
+            </Button>
+            <Button className="btn-ghost-neon group" asChild>
+              <a
+                href="https://www.linkedin.com/in/rajat-yadav-0499b3277/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                LinkedIn
               </a>
             </Button>
             <Button className="btn-ghost-neon group" asChild>
