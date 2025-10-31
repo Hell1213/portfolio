@@ -1,12 +1,37 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github, Zap, Brush } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  Zap,
+  Brush,
+  BookOpen,
+  Building2,
+  Shield,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const getStatusIndicator = (status: string) => {
+    switch (status) {
+      case "completed":
+        return { indicator: "✅", color: "text-green-500" };
+      case "in-progress":
+        return {
+          indicator: "🟢",
+          color: "text-green-400",
+          label: "In Progress",
+        };
+      case "featured":
+        return { indicator: "⭐", color: "text-primary", label: "Featured" };
+      default:
+        return { indicator: "", color: "", label: "" };
+    }
+  };
 
   const projects = [
     {
@@ -27,6 +52,7 @@ const Projects = () => {
         "AI Insights",
         "Focus Timers",
       ],
+      status: "featured",
     },
     {
       title: "NovaDraw",
@@ -46,6 +72,88 @@ const Projects = () => {
         "Infinite Canvas",
         "Real-time Syncing",
       ],
+      status: "featured",
+    },
+    {
+      title: "E-Mentor",
+      subtitle: "AI-Powered E-Book Reading Assistant",
+      description:
+        "A Chrome extension that helps users understand complex text while reading e-books, with subscription-based premium features and AI explanations.",
+      longDescription:
+        "E-Mentor transforms the reading experience with AI-powered explanations for complex terms and concepts. Features multiple subscription tiers (Free, Mini $2/mo, Pro $5/mo, Scholar $10/mo), user dashboard, email notifications, and seamless Chrome integration for enhanced learning.",
+      link: "#", // Placeholder for live demo
+      sourceCodeLink: "#", // Placeholder for GitHub repo
+      icon: BookOpen,
+      gradient: "bg-gradient-accent",
+      tags: [
+        "AI",
+        "Chrome Extension",
+        "FastAPI",
+        "Next.js",
+        "OpenAI",
+        "Subscription",
+      ],
+      features: [
+        "AI Text Explanations",
+        "Chrome Extension",
+        "Subscription Tiers",
+        "User Dashboard",
+      ],
+      status: "completed",
+    },
+    {
+      title: "Business ERP",
+      subtitle: "Multi-Tenant ERP System",
+      description:
+        "A modern, multi-tenant ERP system for small-to-medium businesses with finance, sales, and inventory management modules.",
+      longDescription:
+        "Comprehensive business management solution featuring customer management, invoice generation with PDF export, payment tracking, lead management, sales pipeline with CRM, and inventory control. Built with multi-tenant architecture for complete data isolation and scalability.",
+      link: "#", // In progress
+      sourceCodeLink: "#", // In progress
+      icon: Building2,
+      gradient: "bg-gradient-secondary",
+      tags: [
+        "ERP",
+        "Multi-tenant",
+        "PostgreSQL",
+        "Next.js",
+        "Node.js",
+        "Business",
+      ],
+      features: [
+        "Finance Module",
+        "Sales Pipeline",
+        "Inventory Management",
+        "Multi-tenant Architecture",
+      ],
+      status: "in-progress",
+    },
+    {
+      title: "Aegis Protocol",
+      subtitle: "Decentralized IP Protection Platform",
+      description:
+        "Web3 SaaS platform for AI-generated content IP protection using blockchain, smart contracts, and AI agents for automated licensing and royalty distribution.",
+      longDescription:
+        "Revolutionary blockchain-based intellectual property protection system for AI-generated content. Features autonomous AI agents for IP-NFT minting, computer vision usage detection across the web, smart contract licensing with automated negotiations, and decentralized marketplace for creators in the AI age.",
+      link: "#", // In progress
+      sourceCodeLink: "#", // In progress
+      icon: Shield,
+      gradient: "bg-gradient-primary",
+      tags: [
+        "Web3",
+        "Blockchain",
+        "AI",
+        "NFT",
+        "Smart Contracts",
+        "IP Protection",
+      ],
+      features: [
+        "IP-NFT Minting",
+        "AI Usage Detection",
+        "Smart Contract Licensing",
+        "Decentralized Marketplace",
+      ],
+      status: "in-progress",
     },
   ];
 
@@ -165,14 +273,30 @@ const Projects = () => {
               {/* Project Info */}
               <div className="flex-1 space-y-6">
                 <div>
-                  <motion.h3
-                    className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2"
+                  <motion.div
+                    className="flex items-center gap-3 mb-2"
                     initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.6, delay: 0.3 }}
                   >
-                    {project.title}
-                  </motion.h3>
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold">
+                      {project.title}
+                    </h3>
+                    {project.status && (
+                      <div className="flex items-center gap-1">
+                        <span className="text-lg">
+                          {getStatusIndicator(project.status).indicator}
+                        </span>
+                        <span
+                          className={`text-xs font-medium ${
+                            getStatusIndicator(project.status).color
+                          }`}
+                        >
+                          {getStatusIndicator(project.status).label}
+                        </span>
+                      </div>
+                    )}
+                  </motion.div>
                   <motion.p
                     className="text-lg sm:text-xl text-primary mb-4"
                     initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
@@ -219,33 +343,53 @@ const Projects = () => {
                 </motion.div>
 
                 {/* Action Buttons */}
-                {/* Action Buttons */}
                 <motion.div
                   className="flex gap-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >
-                  <Button className="btn-neon group" asChild>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  {project.link !== "#" ? (
+                    <Button className="btn-neon group" asChild>
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
+                        View Live
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button
+                      className="btn-neon opacity-50 cursor-not-allowed"
+                      disabled
                     >
-                      <ExternalLink className="w-4 h-4 mr-2 group-hover:rotate-12 transition-transform" />
-                      View Live
-                    </a>
-                  </Button>
-                  <Button className="btn-ghost-neon group" asChild>
-                    <a
-                      href={project.sourceCodeLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Coming Soon
+                    </Button>
+                  )}
+
+                  {project.sourceCodeLink !== "#" ? (
+                    <Button className="btn-ghost-neon group" asChild>
+                      <a
+                        href={project.sourceCodeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                        Source Code
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button
+                      className="btn-ghost-neon opacity-50 cursor-not-allowed"
+                      disabled
                     >
-                      <Github className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-                      Source Code
-                    </a>
-                  </Button>
+                      <Github className="w-4 h-4 mr-2" />
+                      Private Repo
+                    </Button>
+                  )}
                 </motion.div>
               </div>
             </motion.div>
