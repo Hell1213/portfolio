@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Github, Twitter, Mail, Menu, X } from "lucide-react";
+import { Github, Twitter, Mail, Menu, X, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ContactModal from "./ContactModal";
 
@@ -70,6 +70,15 @@ const Navigation = () => {
                 <Github className="w-5 h-5" />
               </motion.a>
               <motion.a
+                href="https://www.linkedin.com/in/rajat-yadav-0499b3277/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                whileHover={{ scale: 1.1, rotate: 12 }}
+              >
+                <Linkedin className="w-5 h-5" />
+              </motion.a>
+              <motion.a
                 href="https://x.com/rajatyadavv"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -128,6 +137,14 @@ const Navigation = () => {
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
                     <Github className="w-5 h-5" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/rajat-yadav-0499b3277/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <Linkedin className="w-5 h-5" />
                   </a>
                   <a
                     href="https://x.com/rajatyadavv"
