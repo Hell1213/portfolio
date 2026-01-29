@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Code, Server, Cloud, Brain } from 'lucide-react';
+import { Server, GitBranch, Users } from 'lucide-react';
 
 const Journey = () => {
   const ref = useRef(null);
@@ -9,40 +9,31 @@ const Journey = () => {
 
   const journeySteps = [
     {
-      phase: "Frontend",
-      title: "UI/UX Mastery",
-      description: "Started with HTML, CSS, and JavaScript. Mastered React, Next.js, and modern frontend technologies. Focused on creating beautiful, responsive user interfaces.",
-      icon: Code,
-      color: "hsl(195 100% 75%)",
-      technologies: ["React", "Next.js", "TypeScript", "TailwindCSS", "Framer Motion"],
-      year: "2022"
+      phase: "Open Source Contributor",
+      title: "CCSync (CCExtractor)",
+      description: "Actively contributing to CCSync, an open-source task management and sync platform. Work across frontend and backend, focusing on improving task-related UX, adding meaningful test coverage, and implementing new features based on maintainer feedback. Contributions include UI enhancements, backend fixes, and collaborating in code reviews and issue discussions with core maintainers.",
+      icon: Users,
+      color: "hsl(45 100% 70%)",
+      technologies: ["React", "Node.js", "Testing", "Code Review", "Open Source"],
+      year: "Present"
     },
     {
-      phase: "Backend",
-      title: "Server-Side Development",
-      description: "Expanded into backend development with Node.js, Express, and Django. Built robust APIs, implemented authentication, and learned database management.",
+      phase: "Freelance Software Engineer",
+      title: "SveltyCMS — Monorepo Migration & Build Optimization",
+      description: "Led migration and build optimization for SveltyCMS, focusing on Nx-based monorepo adoption and improving long-term maintainability of the codebase. Migrated existing project structure to an Nx monorepo architecture, refactored circular dependencies between core applications, integrated Next branch into the new monorepo setup, improved build stability and modularity for future scaling, and collaborated directly with maintainers on production code.",
+      icon: GitBranch,
+      color: "hsl(150 100% 70%)",
+      technologies: ["Nx", "Monorepo", "Architecture", "Build Systems", "SvelteKit"],
+      
+    },
+    {
+      phase: "Full-Stack Developer",
+      title: "Roadside Assistance Platform",
+      description: "Built a cross-platform roadside assistance platform where users can request services like towing, jump start, fuel delivery, and track service providers in real time. Worked as the full-stack developer and handled the complete product including customer and driver mobile apps, admin dashboard, backend APIs, real-time location features, OTP-based authentication, and payment gateway integration.",
       icon: Server,
       color: "hsl(280 100% 70%)",
-      technologies: ["Node.js", "Express", "Django", "FastAPI", "MongoDB", "SQL"],
-      year: "2023"
-    },
-    {
-      phase: "DevOps",
-      title: "Deployment & Infrastructure",
-      description: "Learned DevOps fundamentals including Docker containerization, version control with Git, and cloud deployment strategies for scalable applications.",
-      icon: Cloud,
-      color: "hsl(150 100% 70%)",
-      technologies: ["Docker", "Git", "GitHub", "Cloud Deployment", "CI/CD"],
-      year: "2024"
-    },
-    {
-      phase: "AI/ML",
-      title: "Future Technologies",
-      description: "Currently exploring artificial intelligence and machine learning to expand problem-solving capabilities and research skills for next-generation applications.",
-      icon: Brain,
-      color: "hsl(45 100% 70%)",
-      technologies: ["Python", "Machine Learning", "AI Research", "Data Science", "Neural Networks"],
-      year: "Present"
+      technologies: ["Flutter", "Next.js", "Node.js", "NestJS", "Google Maps", "WebSockets", "Docker"],
+     
     }
   ];
 
@@ -75,7 +66,7 @@ const Journey = () => {
   };
 
   return (
-    <section id="journey" ref={ref} className="py-20 sm:py-32 relative overflow-hidden">
+    <section id="experience" ref={ref} className="py-20 sm:py-32 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           className="text-center mb-20"
@@ -84,15 +75,14 @@ const Journey = () => {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
-            <span className="text-gradient">My Journey</span>
+            <span className="text-gradient">Experience & Journey</span>
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-            From frontend magic to AI exploration - a continuous evolution in technology
+            From frontend development to AI exploration - a continuous evolution in technology and impact
           </p>
         </motion.div>
 
         <div className="relative">
-          {/* Timeline Line */}
           <motion.div
             className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-primary rounded-full"
             initial={{ height: 0, opacity: 0 }}
@@ -115,7 +105,6 @@ const Journey = () => {
                   index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
                 } relative`}
               >
-                {/* Timeline Node */}
                 <motion.div
                   className="absolute left-1/2 transform -translate-x-1/2 w-16 h-16 rounded-full flex items-center justify-center z-10"
                   style={{ 
@@ -136,7 +125,6 @@ const Journey = () => {
                   />
                 </motion.div>
 
-                {/* Content Card */}
                 <motion.div
                   className={`w-full lg:w-5/12 ${
                     index % 2 === 0 ? 'lg:mr-auto lg:pr-8 xl:pr-16' : 'lg:ml-auto lg:pl-8 xl:pl-16'
@@ -145,13 +133,11 @@ const Journey = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="glow-card p-6 sm:p-8 relative overflow-hidden group">
-                    {/* Animated Background */}
                     <div 
                       className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-500"
                       style={{ backgroundColor: step.color }}
                     />
                     
-                    {/* Year Badge */}
                     <motion.div
                       className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium"
                       style={{
@@ -189,7 +175,6 @@ const Journey = () => {
                         {step.description}
                       </p>
 
-                      {/* Technologies */}
                       <div className="flex flex-wrap gap-2 pt-4">
                         {step.technologies.map((tech, techIndex) => (
                           <motion.span
