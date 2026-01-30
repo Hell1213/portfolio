@@ -1,181 +1,70 @@
 import { motion } from "framer-motion";
-import { ChevronDown, Github, Twitter, Mail, Linkedin } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import ContactModal from "./ContactModal";
+import { ChevronDown } from "lucide-react";
 
 const Hero = () => {
-  const [isContactOpen, setIsContactOpen] = useState(false);
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut" as const,
-      },
-    },
-  };
-
-  const floatingVariants = {
-    animate: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 4,
-        repeat: Infinity,
-        ease: "easeInOut" as const,
-      },
-    },
-  };
-
   return (
-    <>
-      <section
-        id="hero"
-        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
-      >
-        {/* Animated Background */}
-        <div className="absolute inset-0 cosmic-bg opacity-30" />
-
-        {/* Floating Orbs */}
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden px-6"
+    >
+      <div className="max-w-6xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center py-20">
+        {/* Left side - Text content */}
         <motion.div
-          className="absolute top-20 left-20 w-32 h-32 rounded-full bg-primary/20 blur-xl"
-          variants={floatingVariants}
-          animate="animate"
-        />
-        <motion.div
-          className="absolute bottom-32 right-32 w-24 h-24 rounded-full bg-secondary/20 blur-xl"
-          variants={floatingVariants}
-          animate="animate"
-          transition={{ delay: 1.5 }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-10 w-16 h-16 rounded-full bg-accent/20 blur-lg"
-          variants={floatingVariants}
-          animate="animate"
-          transition={{ delay: 3 }}
-        />
-
-        <motion.div
-          className="relative z-10 text-center max-w-4xl mx-auto px-6"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          <motion.div variants={itemVariants} className="mb-6">
-            <h1 className="text-6xl md:text-8xl font-bold mb-4">
-              <div className="text-gradient">Hii I'm</div>
-              <span className="text-gradient">Rajat</span>{" "}
-              <span className="text-foreground">Yadav</span>
-            </h1>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="mb-8">
-            <div className="text-xl md:text-2xl text-muted-foreground space-y-2">
-              <motion.p
-                className="inline-block"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1, duration: 0.6 }}
-              >
-                Full Stack Developer
-              </motion.p>
-              <span className="text-primary mx-3">|</span>
-              <motion.p
-                className="inline-block"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.3, duration: 0.6 }}
-              >
-                AI Learner
-              </motion.p>
-            </div>
-          </motion.div>
-
-          <motion.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
-          >
-            Passionate about building interactive, scalable applications.
-            Specializing in frontend, backend, and exploring the frontiers of AI
-            and ML.
-          </motion.p>
-
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-wrap justify-center gap-4 mb-16"
-          >
-            <Button className="btn-neon group" asChild>
-              <a
-                href="https://github.com/Hell1213"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
-                GitHub
-              </a>
-            </Button>
-            <Button className="btn-ghost-neon group" asChild>
-              <a
-                href="https://www.linkedin.com/in/rajat-yadav-0499b3277/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Linkedin className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                LinkedIn
-              </a>
-            </Button>
-            <Button className="btn-ghost-neon group" asChild>
-              <a
-                href="https://x.com/rajatyadavv"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Twitter className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                Twitter
-              </a>
-            </Button>
-            <Button
-              className="btn-neon group"
-              onClick={() => setIsContactOpen(true)}
-            >
-              <Mail className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
-              Email Me
-            </Button>
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            className="animate-bounce cursor-pointer"
-            onClick={() => {
-              const techStackSection = document.getElementById("tech-stack");
-              if (techStackSection) {
-                techStackSection.scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-          >
-            <ChevronDown className="w-8 h-8 mx-auto text-primary opacity-70" />
-          </motion.div>
+          <p className="font-mono text-primary text-sm mb-6">
+            Hi, my name is
+          </p>
+          
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 text-white">
+            Rajat Yadav.
+          </h1>
+          
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 text-grey-light">
+            I build Products not just Projects.
+          </h2>
+          
+          <p className="text-lg text-muted-foreground mb-8 max-w-lg leading-relaxed">
+           I’m a software engineer building real-world products across web, mobile, and backend systems. Over time, I want to focus on designing reliable, scalable systems and products that are simple to use and solid under the hood.
+          </p>
         </motion.div>
-      </section>
 
-      <ContactModal
-        isOpen={isContactOpen}
-        onClose={() => setIsContactOpen(false)}
-      />
-    </>
+        {/* Right side - Profile image */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex justify-center md:justify-end"
+        >
+          <div className="profile-frame w-80 h-80 relative group">
+            <img 
+              src="/profile.jpg" 
+              alt="Rajat Yadav" 
+              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+            />
+            <div className="absolute inset-0 bg-primary/10 mix-blend-multiply group-hover:bg-transparent transition-all duration-500" />
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+        onClick={() => {
+          const projectsSection = document.getElementById("projects");
+          if (projectsSection) {
+            projectsSection.scrollIntoView({ behavior: "smooth" });
+          }
+        }}
+      >
+        <ChevronDown className="w-6 h-6 text-primary opacity-70 animate-bounce" />
+      </motion.div>
+    </section>
   );
 };
 

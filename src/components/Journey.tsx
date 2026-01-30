@@ -75,7 +75,7 @@ const Journey = () => {
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
-            <span className="text-gradient">Experience & Journey</span>
+            <span className="text-gradient">Where I’ve Worked</span>
           </h2>
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
             From frontend development to AI exploration - a continuous evolution in technology and impact
