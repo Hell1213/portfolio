@@ -11,25 +11,10 @@ import {
   Shield,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import TechStackStrip from "./TechStackStrip";
 
 const Projects = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const technologies = [
-    { name: "React", icon: "/assets/icons/react.png", color: "#61DAFB" },
-    { name: "TypeScript", icon: "/assets/icons/typescript.png", color: "#3178C6" },
-    { name: "Node.js", icon: "/assets/icons/nodedotjs.png", color: "#339933" },
-    { name: "Python", icon: "/assets/icons/python.png", color: "#3776AB" },
-    { name: "PostgreSQL", icon: "/assets/icons/postgresql.png", color: "#336791" },
-    { name: "MongoDB", icon: "/assets/icons/mongodb.png", color: "#47A248" },
-    { name: "Docker", icon: "/assets/icons/docker.png", color: "#2496ED" },
-    { name: "Git", icon: "/assets/icons/github.png", color: "#6e5494" },
-    { name: "Tailwind", icon: "/assets/icons/tailwindcss.png", color: "#06B6D4" },
-    { name: "Next.js", icon: "/assets/icons/nextdotjs.png", color: "#ffffff" },
-    { name: "Express", icon: "/assets/icons/express.png", color: "#ffffff" },
-  ];
 
   const getStatusIndicator = (status: string) => {
     switch (status) {
@@ -197,9 +182,6 @@ const Projects = () => {
 
   return (
     <section id="projects" ref={ref} className="py-20 sm:py-32 relative">
-      <TechStackStrip position="left" technologies={technologies} />
-      <TechStackStrip position="right" technologies={technologies} />
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <motion.div
           className="text-center mb-20"
